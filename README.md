@@ -17,13 +17,13 @@ conda activate ibcsd-sae
 Download the necessary data (model checkpoints, embeddings, BinaryCorp-3M)
 
 ```bash
-./scripts/download_data.sh 
+bash ./scripts/download_data.sh 
 ```
 
 Download the SAE model checkpoints:
 
 ```bash
-./scripts/download_checkpoints.sh 
+bash ./scripts/download_checkpoints.sh 
 ```
 
 Reproduce the jTrans baseline recall@1:
