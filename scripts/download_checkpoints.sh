@@ -5,7 +5,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-BASE=https://github.com/Mitchell8903/REPO_NAME/releases/download/checkpoints-v1
+BASE=https://github.com/Mitchell8903/Interpretable-BCSD-via-SAE/releases/download/checkpoints-v1
 MANIFEST=results/checkpoints.sha256
 
 # Each manifest line is "<sha256>  <path to sae.pt>"
