@@ -1,0 +1,3 @@
+[submodule "third_party/jTrans"]
+	path = third_party/jTrans
+	url = https://github.com/vul337/jTrans.git

@@ -1,0 +1,22 @@
+A feature detector fires on x86-64 assembly functions matching this
+description:
+
+{description}
+
+The assembly is normalised: `CONST` is any immediate, `[rbp+var_xxx]` is a
+stack slot, `callfunc_xxx` is a call to a hidden function name, `JUMP_ADDR_n`
+is a jump target, and `fs:xxx` is a thread-local access. Instructions run
+together separated by spaces in the form `mnemonic operand operand`.
+
+Below are {n} assembly functions, numbered 1 to {n}. Exactly half of them
+activate the feature and half do not.
+
+{candidates}
+
+For each function in order, decide whether the feature fires on it.
+
+Answer with exactly {n} comma-separated values, one per function, in order.
+Use 1 if the feature fires and 0 if it does not. Output only the numbers, with
+no explanation.
+
+Answer:

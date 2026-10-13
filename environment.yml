@@ -1,0 +1,16 @@
+name: ibcsd-sae
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu128
+      - torch==2.9.1+cu128
+      - transformers==4.46.3
+      - numpy==2.1.3
+      - scikit-learn==1.5.2   # PCA baseline
+      - networkx==3.4.2       # required by jTrans datautils
+      - pyelftools==0.31      # required by jTrans datautils
+      - tqdm==4.67.1

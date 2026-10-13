@@ -1,0 +1,96 @@
+{
+  "run_dir": "results/layer6/sweep/dsae8192_k32_seed1",
+  "config": {
+    "layer": 6,
+    "activations_dir": "data/activations",
+    "heldout_frac": 0.2,
+    "split_seed": 0,
+    "d_sae": 8192,
+    "k": 32,
+    "k_aux": 512,
+    "aux_coef": 0.03125,
+    "dead_tokens": 10000000,
+    "lr": 0.0001,
+    "batch_size": 4096,
+    "epochs": 60,
+    "seed": 1,
+    "out_dir": ""
+  },
+  "jtrans_commit": "1d405156865e3c582e4f183cbaa623b700ea0e9e",
+  "poolsize": 5000,
+  "seed": 0,
+  "n_heldout": 364896,
+  "n_heldout_functions": 48249,
+  "mse": 27.152894973754883,
+  "heldout_variance": 263.8083801269531,
+  "variance_explained": 0.8970734176045203,
+  "pairs": {
+    "O0-O3": {
+      "original": {
+        "mrr": 0.5696502269139155,
+        "recall_at_1": 0.455
+      },
+      "reconstructed": {
+        "mrr": 0.570465662510131,
+        "recall_at_1": 0.4568
+      },
+      "retained_recall_at_1": 1.003956043956044
+    },
+    "O0-Os": {
+      "original": {
+        "mrr": 0.5775664806805405,
+        "recall_at_1": 0.4608
+      },
+      "reconstructed": {
+        "mrr": 0.5791483378440054,
+        "recall_at_1": 0.4622
+      },
+      "retained_recall_at_1": 1.0030381944444444
+    },
+    "O1-Os": {
+      "original": {
+        "mrr": 0.6532074005058044,
+        "recall_at_1": 0.5486
+      },
+      "reconstructed": {
+        "mrr": 0.6553100097458878,
+        "recall_at_1": 0.552
+      },
+      "retained_recall_at_1": 1.0061975938753192
+    },
+    "O1-O3": {
+      "original": {
+        "mrr": 0.689249845860266,
+        "recall_at_1": 0.5962
+      },
+      "reconstructed": {
+        "mrr": 0.6864210440628552,
+        "recall_at_1": 0.5938
+      },
+      "retained_recall_at_1": 0.9959745051995975
+    },
+    "O2-Os": {
+      "original": {
+        "mrr": 0.7041234045542772,
+        "recall_at_1": 0.6168
+      },
+      "reconstructed": {
+        "mrr": 0.7016376153365056,
+        "recall_at_1": 0.6144
+      },
+      "retained_recall_at_1": 0.9961089494163423
+    },
+    "O2-O3": {
+      "original": {
+        "mrr": 0.7467324978117331,
+        "recall_at_1": 0.6688
+      },
+      "reconstructed": {
+        "mrr": 0.7437136045034413,
+        "recall_at_1": 0.6672
+      },
+      "retained_recall_at_1": 0.9976076555023924
+    }
+  },
+  "mean_retained_recall_at_1": 1.0004804903990232
+}

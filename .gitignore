@@ -1,0 +1,10 @@
+# all restored using scripts/download_data.sh
+data/
+models/ 
+experiments/
+notes/
+downloads/
+__pycache__/
+*.pyc
+*.log
+*.pt

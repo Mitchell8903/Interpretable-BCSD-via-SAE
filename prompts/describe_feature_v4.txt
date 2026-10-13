@@ -1,0 +1,54 @@
+You are analysing a feature detector taken from a sparse autoencoder trained on
+a binary code similarity model. The detector fires on individual tokens of
+x86-64 assembly functions.
+
+The assembly has been normalised by the upstream tokeniser, so read these
+placeholders as follows:
+
+- `CONST` is any immediate constant.
+- `[rbp+var_xxx]` / `[rsp+var_xxx]` are stack slots; the offset is hidden.
+- `callfunc_xxx` is a call to some function whose name is hidden.
+- `JUMP_ADDR_n` is a jump target; the same n within one function is the same
+  target, so these reveal the control-flow shape.
+- `fs:xxx` is a thread-local access, typically a stack canary.
+
+Instructions run together separated by spaces, with no line breaks, in the form
+`mnemonic operand operand`.
+
+Below are two groups of functions, matched on optimization level and length so
+neither cue can substitute for the real pattern. Functions A1-A{n} activate the
+feature strongly. Functions B1-B{n} are matched controls that do not activate
+it at all. Use the B functions only to rule out patterns: anything present in
+both groups is not the feature.
+
+In the A functions, the tokens where the detector fires are marked «like
+this». The pattern you describe should account for the marked tokens and
+their immediate context. The functions it will later be tested on are not
+marked, so describe the pattern itself, never the marks.
+
+{positive_examples}
+
+{negative_examples}
+
+Describe the feature as ONE concrete pattern that the A functions contain, in
+a single sentence. Name specific instructions, control-flow shapes, calling
+conventions, or operand patterns.
+
+Rules:
+
+- Describe only what the A functions contain. Do not mention the B functions,
+  and do not phrase the description as a comparison ("unlike", "instead of",
+  "rather than"): it will be read by someone who never sees the B functions.
+- Exactly one idea. If the A functions show several unrelated patterns, pick
+  the single pattern shared by the most A functions and describe only that.
+  Do not list alternatives, do not use "or" / "either" / "some ... others",
+  and do not refer to individual functions or subsets such as "A1-A6".
+- A standard prologue (`endbr64`, `push rbp`, `mov rbp rsp`), a standard
+  epilogue (`pop rbp`, `ret`), or generic argument setup appear in most
+  functions in this dataset regardless of the feature, and are NOT valid
+  answers.
+
+If no single pattern is shared by most of the A functions and absent from the
+B functions, answer exactly: NO CLEAR PATTERN
+
+Description:
