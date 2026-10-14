@@ -30,7 +30,10 @@ class SAEConfig:
     # AuxK parameters
     k_aux: int = 512
     aux_coef: float = 1 / 32
-    dead_tokens: int = 10_000_000
+    # A latent is dead after this many training tokens without firing. Kept
+    # under one epoch (~4.4M tokens at layer 6): a latent silent for a whole
+    # epoch fires on none of the data, so a longer window only delays AuxK.
+    dead_tokens: int = 2_000_000
 
     # Training parameters
     lr: float = 1e-4

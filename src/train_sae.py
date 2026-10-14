@@ -28,25 +28,14 @@ def load_activations(cfg):
     )
 
 
-def normalization_scale(x, batch_size=65536):
-    """Scale making E||x||_2 = sqrt(d_model)"""
-    norms = torch.cat(
-        [
-            x[i : i + batch_size].float().norm(dim=1)
-            for i in range(0, len(x), batch_size)
-        ]
-    )
-    return (x.shape[1] ** 0.5) / norms.mean()
-
-
 @torch.no_grad()
-def evaluate(sae, x, scale, batch_size):
+def evaluate(sae, x, batch_size):
     """Mean recon loss, mean L0 and dead-feature fraction over x."""
     total_recon = 0.0
     total_l0 = 0.0
     fired = torch.zeros(sae.b_enc.shape[0], dtype=torch.bool, device=x.device)
     for i in range(0, len(x), batch_size):
-        batch = x[i : i + batch_size].float() * scale
+        batch = x[i : i + batch_size].float()
         z, x_hat = sae(batch)
         total_recon += sae_loss(batch, x_hat).item() * len(batch)
         total_l0 += (z > 0).sum(-1).float().sum().item()
@@ -59,11 +48,10 @@ def evaluate(sae, x, scale, batch_size):
 
 
 def train(cfg, device="cuda"):
-    """Train one SAE (sae, epoch log, scale, d_model, n_train)."""
+    """Train one SAE (sae, epoch log, d_model, n_train)."""
     set_seed(cfg.seed)
     x_train, x_heldout = load_activations(cfg)
 
-    scale = normalization_scale(x_train)
     x_train, x_heldout = x_train.to(device), x_heldout.to(device)
     print(f"train {tuple(x_train.shape)}  heldout {tuple(x_heldout.shape)}", flush=True)
 
@@ -77,7 +65,7 @@ def train(cfg, device="cuda"):
     for epoch in range(cfg.epochs):
         order = torch.randperm(len(x_train), device=device)
         for i in range(0, len(order), cfg.batch_size):
-            batch = x_train[order[i : i + cfg.batch_size]].float() * scale
+            batch = x_train[order[i : i + cfg.batch_size]].float()
             pre = sae.pre_activations(batch)  # (batch, d_sae)
             z = topk(pre, cfg.k)
             x_hat = sae.decode(z)
@@ -93,7 +81,7 @@ def train(cfg, device="cuda"):
             tokens_since_fired += len(batch)
             tokens_since_fired[(z > 0).any(0)] = 0
 
-        metrics = evaluate(sae, x_heldout, scale, cfg.batch_size)
+        metrics = evaluate(sae, x_heldout, cfg.batch_size)
         metrics["epoch"] = epoch
         log.append(metrics)
         print(
@@ -102,23 +90,22 @@ def train(cfg, device="cuda"):
             flush=True,
         )
 
-    return sae, log, float(scale), d_model, len(x_train)
+    return sae, log, d_model, len(x_train)
 
 
 def train_and_save(cfg):
     """Train one SAE and write sae.pt and run.json."""
-    sae, log, scale, d_model, n_train = train(cfg)
+    sae, log, d_model, n_train = train(cfg)
 
     run_dir = cfg.run_dir()
     run_dir.mkdir(parents=True, exist_ok=True)
-    torch.save({"state_dict": sae.state_dict(), "scale": scale}, run_dir / "sae.pt")
+    torch.save({"state_dict": sae.state_dict()}, run_dir / "sae.pt")
     write_result(
         run_dir / "run.json",
         {
             "config": dataclasses.asdict(cfg),
             "d_model": d_model,
             "n_train": n_train,
-            "activation_scale": scale,
             "jtrans_commit": jtrans_commit(),
             "log": log,
             "final": log[-1],
