@@ -55,12 +55,42 @@ def embed_functions(model, tokens, pad_id, batch_size=32):
     return torch.cat(out)
 
 
+def sep_positions(real):
+    """(batch,) position of each sequence's [SEP]."""
+    return real.sum(1) - 1
+
+
 def asm_positions(real):
     """(batch, seq) mask of asm tokens: real, but not [CLS] or [SEP]."""
     asm = real.clone()
     asm[:, 0] = False
-    asm[torch.arange(len(real)), real.sum(1) - 1] = False
+    asm[torch.arange(len(real)), sep_positions(real)] = False
     return asm
+
+
+@torch.no_grad()
+def mean_states(model, tokens, layer, pad_id, batch_size=32):
+    """Mean [CLS], [SEP] and asm-token states at `layer`, each (d_model,)."""
+    sums = {"cls": 0.0, "sep": 0.0, "asm": 0.0}
+    n_functions, n_asm = 0, 0
+    for i in range(0, len(tokens), batch_size):
+        ids = tokens[i : i + batch_size].long().cuda()
+        real = ids != pad_id
+        hidden = model(
+            input_ids=ids, attention_mask=real.long(), output_hidden_states=True
+        ).hidden_states[layer]
+        rows = torch.arange(len(ids))
+        sums["cls"] = sums["cls"] + hidden[:, 0].sum(0)
+        sums["sep"] = sums["sep"] + hidden[rows, sep_positions(real)].sum(0)
+        asm = asm_positions(real)
+        sums["asm"] = sums["asm"] + hidden[asm].sum(0)
+        n_functions += len(ids)
+        n_asm += int(asm.sum())
+    return {
+        "cls": sums["cls"] / n_functions,
+        "sep": sums["sep"] / n_functions,
+        "asm": sums["asm"] / n_asm,
+    }
 
 
 @torch.no_grad()
@@ -89,8 +119,10 @@ def pooled_activations(encode, tokens, layer, model, pad_id, batch_size=32):
 
 
 @torch.no_grad()
-def edited_embeddings(model, tokens, layer, pad_id, edit, batch_size=32):
-    """jTrans embeddings with every asm token's state at `layer` replaced by edit(states)"""
+def edited_embeddings(model, tokens, layer, pad_id, edit, special=None, batch_size=32):
+    """jTrans embeddings with every asm token's state at `layer` replaced by
+    edit(states), and, if `special` is given, the [CLS] and [SEP] states
+    replaced by special["cls"] and special["sep"]."""
     blocks = model.encoder.layer
     out = []
     for i in range(0, len(tokens), batch_size):
@@ -102,6 +134,11 @@ def edited_embeddings(model, tokens, layer, pad_id, edit, batch_size=32):
             hidden = block(hidden, attention_mask=mask)[0]
         asm = asm_positions(real)
         hidden[asm] = edit(hidden[asm])
+        if special is not None:
+            hidden[:, 0] = special["cls"].to(hidden.dtype)
+            hidden[torch.arange(len(ids)), sep_positions(real)] = special["sep"].to(
+                hidden.dtype
+            )
         for block in blocks[layer:]:
             hidden = block(hidden, attention_mask=mask)[0]
         out.append(model.pooler(hidden).cpu())

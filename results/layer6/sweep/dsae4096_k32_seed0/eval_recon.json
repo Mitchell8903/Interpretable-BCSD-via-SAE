@@ -19,6 +19,7 @@
   "jtrans_commit": "1d405156865e3c582e4f183cbaa623b700ea0e9e",
   "poolsize": 5000,
   "seed": 0,
+  "mean_functions": 4096,
   "n_heldout": 364896,
   "n_heldout_functions": 48249,
   "mse": 30.278112411499023,
@@ -27,70 +28,104 @@
   "pairs": {
     "O0-O3": {
       "original": {
-        "mrr": 0.5696502269139155,
-        "recall_at_1": 0.455
+        "mrr": 0.5811111463450885,
+        "recall_at_1": 0.4676
       },
       "reconstructed": {
-        "mrr": 0.569017886863983,
-        "recall_at_1": 0.454
+        "mrr": 0.5794890748566244,
+        "recall_at_1": 0.465
       },
-      "retained_recall_at_1": 0.9978021978021978
+      "ablated": {
+        "mrr": 0.007126730542244122,
+        "recall_at_1": 0.0016
+      },
+      "retained_recall_at_1": 0.9944396920444825,
+      "recovered_fraction": 0.9944206008583691
     },
     "O0-Os": {
       "original": {
-        "mrr": 0.5775664806805405,
-        "recall_at_1": 0.4608
+        "mrr": 0.5893970603126668,
+        "recall_at_1": 0.4726
       },
       "reconstructed": {
-        "mrr": 0.5807677974991888,
-        "recall_at_1": 0.4634
+        "mrr": 0.5930996462990599,
+        "recall_at_1": 0.4756
       },
-      "retained_recall_at_1": 1.0056423611111112
+      "ablated": {
+        "mrr": 0.006911636960910815,
+        "recall_at_1": 0.0016
+      },
+      "retained_recall_at_1": 1.0063478628861617,
+      "recovered_fraction": 1.0063694267515924
     },
     "O1-Os": {
       "original": {
-        "mrr": 0.6532074005058044,
-        "recall_at_1": 0.5486
+        "mrr": 0.6627080735528732,
+        "recall_at_1": 0.5594
       },
       "reconstructed": {
-        "mrr": 0.6530788388719054,
-        "recall_at_1": 0.5498
+        "mrr": 0.6663367876114653,
+        "recall_at_1": 0.5642
       },
-      "retained_recall_at_1": 1.0021873860736419
+      "ablated": {
+        "mrr": 0.03146349287101195,
+        "recall_at_1": 0.007
+      },
+      "retained_recall_at_1": 1.008580622095102,
+      "recovered_fraction": 1.0086893555394643
     },
     "O1-O3": {
       "original": {
-        "mrr": 0.689249845860266,
-        "recall_at_1": 0.5962
+        "mrr": 0.695902021318928,
+        "recall_at_1": 0.6064
       },
       "reconstructed": {
-        "mrr": 0.6868432959667132,
-        "recall_at_1": 0.594
+        "mrr": 0.6963594519199334,
+        "recall_at_1": 0.609
       },
-      "retained_recall_at_1": 0.996309963099631
+      "ablated": {
+        "mrr": 0.03818949959931664,
+        "recall_at_1": 0.0094
+      },
+      "retained_recall_at_1": 1.004287598944591,
+      "recovered_fraction": 1.0043551088777218
     },
     "O2-Os": {
       "original": {
-        "mrr": 0.7041234045542772,
-        "recall_at_1": 0.6168
+        "mrr": 0.7074314465919501,
+        "recall_at_1": 0.6218
       },
       "reconstructed": {
-        "mrr": 0.7027565397948663,
-        "recall_at_1": 0.6142
+        "mrr": 0.7055294746501286,
+        "recall_at_1": 0.6194
       },
-      "retained_recall_at_1": 0.9957846952010375
+      "ablated": {
+        "mrr": 0.04069337082032669,
+        "recall_at_1": 0.009
+      },
+      "retained_recall_at_1": 0.9961402380186554,
+      "recovered_fraction": 0.996083550913838
     },
     "O2-O3": {
       "original": {
-        "mrr": 0.7467324978117331,
-        "recall_at_1": 0.6688
+        "mrr": 0.7485734789610625,
+        "recall_at_1": 0.6714
       },
       "reconstructed": {
-        "mrr": 0.7442602598658644,
-        "recall_at_1": 0.665
+        "mrr": 0.7474285622043427,
+        "recall_at_1": 0.6702
       },
-      "retained_recall_at_1": 0.994318181818182
+      "ablated": {
+        "mrr": 0.1383799276081625,
+        "recall_at_1": 0.0468
+      },
+      "retained_recall_at_1": 0.998212689901698,
+      "recovered_fraction": 0.9980787704130644
     }
   },
-  "mean_retained_recall_at_1": 0.9986741308509669
+  "mean_retained_recall_at_1": 1.0013347839817817,
+  "mean_recovered_fraction": 1.001332802225675,
+  "mean_recall_at_1_unedited": 0.5577,
+  "mean_recall_at_1_original": 0.5665333333333332,
+  "mean_recall_at_1_ablated": 0.012566666666666665
 }

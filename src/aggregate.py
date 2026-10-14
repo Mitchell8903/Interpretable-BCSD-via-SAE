@@ -18,7 +18,11 @@ from utils import jtrans_commit, write_result
 
 
 TRAIN_METRICS = ["l0", "dead_frac", "recon"]
-RECON_METRICS = ["variance_explained", "mean_retained_recall_at_1"]
+RECON_METRICS = [
+    "variance_explained",
+    "mean_retained_recall_at_1",
+    "mean_recovered_fraction",
+]
 INTERP_METRICS = ["detection_acc", "control_acc", "n_scored"]
 OPTIONAL_METRICS = RECON_METRICS + INTERP_METRICS + ["detection_acc_unscored_at_chance"]
 
@@ -98,6 +102,7 @@ def print_row(r):
         line += (
             f"  var_exp {r['variance_explained']['mean']:.3f}"
             f"  retained R@1 {r['mean_retained_recall_at_1']['mean']:.3f}"
+            f"  recovered {r['mean_recovered_fraction']['mean']:.3f}"
         )
     if "detection_acc" in r:
         line += (
