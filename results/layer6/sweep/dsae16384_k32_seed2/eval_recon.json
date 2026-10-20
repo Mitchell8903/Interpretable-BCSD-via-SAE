@@ -9,10 +9,11 @@
     "k": 32,
     "k_aux": 512,
     "aux_coef": 0.03125,
-    "dead_tokens": 10000000,
+    "dead_tokens": 2000000,
     "lr": 0.0001,
+    "lr_decay_frac": 0.2,
     "batch_size": 4096,
-    "epochs": 60,
+    "epochs": 100,
     "seed": 2,
     "out_dir": ""
   },
@@ -22,9 +23,9 @@
   "mean_functions": 4096,
   "n_heldout": 364896,
   "n_heldout_functions": 48249,
-  "mse": 24.80455780029297,
+  "mse": 23.96731948852539,
   "heldout_variance": 263.8083801269531,
-  "variance_explained": 0.9059750953007777,
+  "variance_explained": 0.9091487560895847,
   "pairs": {
     "O0-O3": {
       "original": {
@@ -32,15 +33,15 @@
         "recall_at_1": 0.4676
       },
       "reconstructed": {
-        "mrr": 0.5812897012481922,
-        "recall_at_1": 0.467
+        "mrr": 0.581966547384509,
+        "recall_at_1": 0.466
       },
       "ablated": {
         "mrr": 0.007126730542244122,
         "recall_at_1": 0.0016
       },
-      "retained_recall_at_1": 0.9987168520102652,
-      "recovered_fraction": 0.9987124463519313
+      "retained_recall_at_1": 0.9965782720273738,
+      "recovered_fraction": 0.9965665236051502
     },
     "O0-Os": {
       "original": {
@@ -48,15 +49,15 @@
         "recall_at_1": 0.4726
       },
       "reconstructed": {
-        "mrr": 0.5910525945704469,
-        "recall_at_1": 0.4752
+        "mrr": 0.5939821484331061,
+        "recall_at_1": 0.4784
       },
       "ablated": {
         "mrr": 0.006911636960910815,
         "recall_at_1": 0.0016
       },
-      "retained_recall_at_1": 1.0055014811680067,
-      "recovered_fraction": 1.00552016985138
+      "retained_recall_at_1": 1.0122725349132458,
+      "recovered_fraction": 1.0123142250530786
     },
     "O1-Os": {
       "original": {
@@ -64,15 +65,15 @@
         "recall_at_1": 0.5594
       },
       "reconstructed": {
-        "mrr": 0.6642746401698577,
-        "recall_at_1": 0.5636
+        "mrr": 0.6654881292374754,
+        "recall_at_1": 0.5612
       },
       "ablated": {
         "mrr": 0.03146349287101195,
         "recall_at_1": 0.007
       },
-      "retained_recall_at_1": 1.007508044333214,
-      "recovered_fraction": 1.0076031860970311
+      "retained_recall_at_1": 1.0032177332856633,
+      "recovered_fraction": 1.0032585083272991
     },
     "O1-O3": {
       "original": {
@@ -80,15 +81,15 @@
         "recall_at_1": 0.6064
       },
       "reconstructed": {
-        "mrr": 0.6958988805747615,
-        "recall_at_1": 0.6068
+        "mrr": 0.6956340375439056,
+        "recall_at_1": 0.604
       },
       "ablated": {
         "mrr": 0.03818949959931664,
         "recall_at_1": 0.0094
       },
-      "retained_recall_at_1": 1.00065963060686,
-      "recovered_fraction": 1.0006700167504188
+      "retained_recall_at_1": 0.9960422163588389,
+      "recovered_fraction": 0.9959798994974873
     },
     "O2-Os": {
       "original": {
@@ -96,15 +97,15 @@
         "recall_at_1": 0.6218
       },
       "reconstructed": {
-        "mrr": 0.7048905436704447,
-        "recall_at_1": 0.6188
+        "mrr": 0.7115590356099919,
+        "recall_at_1": 0.6254
       },
       "ablated": {
         "mrr": 0.04069337082032669,
         "recall_at_1": 0.009
       },
-      "retained_recall_at_1": 0.9951752975233193,
-      "recovered_fraction": 0.9951044386422977
+      "retained_recall_at_1": 1.0057896429720166,
+      "recovered_fraction": 1.0058746736292428
     },
     "O2-O3": {
       "original": {
@@ -112,19 +113,19 @@
         "recall_at_1": 0.6714
       },
       "reconstructed": {
-        "mrr": 0.7461144175001374,
-        "recall_at_1": 0.6698
+        "mrr": 0.7498997352151311,
+        "recall_at_1": 0.6722
       },
       "ablated": {
         "mrr": 0.1383799276081625,
         "recall_at_1": 0.0468
       },
-      "retained_recall_at_1": 0.9976169198689305,
-      "recovered_fraction": 0.9974383605507524
+      "retained_recall_at_1": 1.0011915400655347,
+      "recovered_fraction": 1.001280819724624
     }
   },
-  "mean_retained_recall_at_1": 1.0008630375850993,
-  "mean_recovered_fraction": 1.0008414363739686,
+  "mean_retained_recall_at_1": 1.0025153232704456,
+  "mean_recovered_fraction": 1.0025457749728137,
   "mean_recall_at_1_unedited": 0.5577,
   "mean_recall_at_1_original": 0.5665333333333332,
   "mean_recall_at_1_ablated": 0.012566666666666665

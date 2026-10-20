@@ -9,10 +9,11 @@
     "k": 32,
     "k_aux": 512,
     "aux_coef": 0.03125,
-    "dead_tokens": 10000000,
+    "dead_tokens": 2000000,
     "lr": 0.0001,
+    "lr_decay_frac": 0.2,
     "batch_size": 4096,
-    "epochs": 60,
+    "epochs": 100,
     "seed": 0,
     "out_dir": ""
   },
@@ -22,9 +23,9 @@
   "mean_functions": 4096,
   "n_heldout": 364896,
   "n_heldout_functions": 48249,
-  "mse": 30.278112411499023,
+  "mse": 29.877342224121094,
   "heldout_variance": 263.8083801269531,
-  "variance_explained": 0.885226874154156,
+  "variance_explained": 0.8867460457103631,
   "pairs": {
     "O0-O3": {
       "original": {
@@ -32,15 +33,15 @@
         "recall_at_1": 0.4676
       },
       "reconstructed": {
-        "mrr": 0.5794890748566244,
-        "recall_at_1": 0.465
+        "mrr": 0.5820456270193803,
+        "recall_at_1": 0.4682
       },
       "ablated": {
         "mrr": 0.007126730542244122,
         "recall_at_1": 0.0016
       },
-      "retained_recall_at_1": 0.9944396920444825,
-      "recovered_fraction": 0.9944206008583691
+      "retained_recall_at_1": 1.0012831479897348,
+      "recovered_fraction": 1.0012875536480685
     },
     "O0-Os": {
       "original": {
@@ -48,15 +49,15 @@
         "recall_at_1": 0.4726
       },
       "reconstructed": {
-        "mrr": 0.5930996462990599,
-        "recall_at_1": 0.4756
+        "mrr": 0.589260285327788,
+        "recall_at_1": 0.4714
       },
       "ablated": {
         "mrr": 0.006911636960910815,
         "recall_at_1": 0.0016
       },
-      "retained_recall_at_1": 1.0063478628861617,
-      "recovered_fraction": 1.0063694267515924
+      "retained_recall_at_1": 0.9974608548455353,
+      "recovered_fraction": 0.997452229299363
     },
     "O1-Os": {
       "original": {
@@ -64,15 +65,15 @@
         "recall_at_1": 0.5594
       },
       "reconstructed": {
-        "mrr": 0.6663367876114653,
-        "recall_at_1": 0.5642
+        "mrr": 0.6639393731686072,
+        "recall_at_1": 0.5632
       },
       "ablated": {
         "mrr": 0.03146349287101195,
         "recall_at_1": 0.007
       },
-      "retained_recall_at_1": 1.008580622095102,
-      "recovered_fraction": 1.0086893555394643
+      "retained_recall_at_1": 1.0067929924919556,
+      "recovered_fraction": 1.0068790731354091
     },
     "O1-O3": {
       "original": {
@@ -80,15 +81,15 @@
         "recall_at_1": 0.6064
       },
       "reconstructed": {
-        "mrr": 0.6963594519199334,
-        "recall_at_1": 0.609
+        "mrr": 0.6941535117841892,
+        "recall_at_1": 0.6042
       },
       "ablated": {
         "mrr": 0.03818949959931664,
         "recall_at_1": 0.0094
       },
-      "retained_recall_at_1": 1.004287598944591,
-      "recovered_fraction": 1.0043551088777218
+      "retained_recall_at_1": 0.996372031662269,
+      "recovered_fraction": 0.9963149078726967
     },
     "O2-Os": {
       "original": {
@@ -96,15 +97,15 @@
         "recall_at_1": 0.6218
       },
       "reconstructed": {
-        "mrr": 0.7055294746501286,
-        "recall_at_1": 0.6194
+        "mrr": 0.7067544876855162,
+        "recall_at_1": 0.6208
       },
       "ablated": {
         "mrr": 0.04069337082032669,
         "recall_at_1": 0.009
       },
-      "retained_recall_at_1": 0.9961402380186554,
-      "recovered_fraction": 0.996083550913838
+      "retained_recall_at_1": 0.9983917658411064,
+      "recovered_fraction": 0.9983681462140992
     },
     "O2-O3": {
       "original": {
@@ -112,7 +113,7 @@
         "recall_at_1": 0.6714
       },
       "reconstructed": {
-        "mrr": 0.7474285622043427,
+        "mrr": 0.7479234974269781,
         "recall_at_1": 0.6702
       },
       "ablated": {
@@ -123,8 +124,8 @@
       "recovered_fraction": 0.9980787704130644
     }
   },
-  "mean_retained_recall_at_1": 1.0013347839817817,
-  "mean_recovered_fraction": 1.001332802225675,
+  "mean_retained_recall_at_1": 0.9997522471220499,
+  "mean_recovered_fraction": 0.99973011343045,
   "mean_recall_at_1_unedited": 0.5577,
   "mean_recall_at_1_original": 0.5665333333333332,
   "mean_recall_at_1_ablated": 0.012566666666666665

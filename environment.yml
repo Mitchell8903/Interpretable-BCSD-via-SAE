@@ -14,3 +14,4 @@ dependencies:
       - networkx==3.4.2       # required by jTrans datautils
       - pyelftools==0.31      # required by jTrans datautils
       - tqdm==4.67.1
+      - matplotlib==3.9.2     # training curves

@@ -1,0 +1,1402 @@
+{
+  "config": {
+    "layer": 9,
+    "activations_dir": "data/activations",
+    "heldout_frac": 0.2,
+    "split_seed": 0,
+    "d_sae": 16384,
+    "k": 32,
+    "k_aux": 512,
+    "aux_coef": 0.03125,
+    "dead_tokens": 2000000,
+    "lr": 0.0001,
+    "lr_decay_frac": 0.2,
+    "batch_size": 4096,
+    "epochs": 100,
+    "seed": 1,
+    "out_dir": ""
+  },
+  "jtrans_commit": "1d405156865e3c582e4f183cbaa623b700ea0e9e",
+  "llm": "gpt-6-luna",
+  "reasoning_effort": {
+    "describe": "medium",
+    "score": "low"
+  },
+  "settings": {
+    "n_features": 150,
+    "n_exemplars": 20,
+    "n_per_class": 10,
+    "max_chars": 4000,
+    "score_frac": 0.5,
+    "min_rate": 0.001,
+    "max_rate": 0.5
+  },
+  "prompts": [
+    "describe_feature_v4",
+    "predict_activation_v1"
+  ],
+  "seed": 0,
+  "n_functions": 205542,
+  "n_distinct_inputs": 101753,
+  "n_explain": 57439,
+  "n_score": 44314,
+  "n_eligible_features": 15987,
+  "n_features": 150,
+  "n_no_pattern": 10,
+  "n_too_few_activations": 0,
+  "n_scored": 140,
+  "detection_acc": 0.9228571428571428,
+  "control_acc": 0.5217857142857143,
+  "features": [
+    {
+      "feature": 18,
+      "firing_rate": 0.06560003012418747,
+      "description": "The return value is repeatedly reduced to a compact flag or bitfield in EAX using immediate bit operations, often after a compare-to-SBB conversion.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.45
+    },
+    {
+      "feature": 234,
+      "firing_rate": 0.12330840528011322,
+      "description": "A terminal direct `jmp JUMP_ADDR_n` in the function\u2019s trailing block, commonly immediately following a `call`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.95,
+      "control_acc": 0.44999999999999996
+    },
+    {
+      "feature": 555,
+      "firing_rate": 0.06750661134719849,
+      "description": "A memory-loaded integer or byte is modified with an immediate bitmask instruction and the result is written back to a pointer-relative field.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 682,
+      "firing_rate": 0.04327145218849182,
+      "description": "A function-call result in `rax` is checked with `test rax, rax`, converted to a zero flag via `setz al`, then tested with `test al, al` before a conditional `jz`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.9,
+      "control_acc": 0.6
+    },
+    {
+      "feature": 1045,
+      "firing_rate": 0.28533801436424255,
+      "description": "Repeated non-entry `endbr64` branch stubs move a call result into a callee-saved register, pass a pointer in `rdi` to a helper call, and jump to a shared continuation.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.65,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 1058,
+      "firing_rate": 0.2280718982219696,
+      "description": "NO CLEAR PATTERN",
+      "no_pattern": true,
+      "too_few_activations": false,
+      "detection_acc": null,
+      "control_acc": null
+    },
+    {
+      "feature": 1161,
+      "firing_rate": 0.06576710194349289,
+      "description": "A call is bracketed by `push rax` and `pop rdx`, discarding the pushed stack word into `rdx` after the call.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 1241,
+      "firing_rate": 0.156899556517601,
+      "description": "Repeatedly load an object pointer from a stack slot into `rax`, then store immediate constants into its fixed-offset fields with instructions like `mov [rax+CONST], CONST`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.95,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 1354,
+      "firing_rate": 0.01755230873823166,
+      "description": "Legacy x87 floating-point stack operations, including `fld`/`fild` loads, `faddp`/`fmulp` arithmetic, and `fstp` stores to memory.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 1508,
+      "firing_rate": 0.028402110561728477,
+      "description": "A compare-driven, branchless integer clamp, where `cmp` is followed by a conditional move such as `cmova`, `cmovg`, or `cmovle` to select a bound.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.30000000000000004
+    },
+    {
+      "feature": 1532,
+      "firing_rate": 0.027822274714708328,
+      "description": "Long straight-line, often unrolled sequences repeatedly call a helper after setting up arguments in `rdi`, `rsi`, and `rdx`, then use the return value in `rax`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.45
+    },
+    {
+      "feature": 1539,
+      "firing_rate": 0.07215511798858643,
+      "description": "Unsigned right-shifting a register by an immediate count and then ANDing it with an immediate mask to extract a bit field.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 1566,
+      "firing_rate": 0.03988088667392731,
+      "description": "An object pointer is dereferenced to obtain a dispatch-table entry at a `CONST` offset, the function pointer is loaded into a register, and execution proceeds via `call reg`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.45
+    },
+    {
+      "feature": 1591,
+      "firing_rate": 0.08066592365503311,
+      "description": "Repeated runs of rbp-relative stack-slot shuffling, with local values or addresses loaded into `rax` and then stored into other `[rbp+var_xxx]` slots.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.9,
+      "control_acc": 0.44999999999999996
+    },
+    {
+      "feature": 1656,
+      "firing_rate": 0.04770375415682793,
+      "description": "A call is preceded by three `lea` instructions loading `GLOBAL_VAR` addresses and placing them in argument registers, including `RSI` and `RDI`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.8500000000000001,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 1688,
+      "firing_rate": 0.04323213919997215,
+      "description": "The feature is materializing a nonzero result as a byte boolean with `test reg,reg` followed by `setnz` into `al` or another byte destination, often after a call.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.45
+    },
+    {
+      "feature": 1828,
+      "firing_rate": 0.08200249820947647,
+      "description": "Repeated call-associated updates use `mov` to write register values, commonly `eax` or `rax`, into memory locations between successive `call` instructions.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.8,
+      "control_acc": 0.45
+    },
+    {
+      "feature": 2096,
+      "firing_rate": 0.05074051767587662,
+      "description": "A 32-bit value loaded through a pointer is tested against zero, then compared with an immediate, followed by a constant-fed locked atomic instruction and a result comparison whose conditional branch shares the zero-test branch target.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.7
+    },
+    {
+      "feature": 2191,
+      "firing_rate": 0.16641278564929962,
+      "description": "Short basic-block stubs make a call, preserve or set a register value, then end with an unconditional direct `jmp JUMP_ADDR_*`, often targeting `JUMP_ADDR_EXCEEDED`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.9,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 2340,
+      "firing_rate": 0.07258754223585129,
+      "description": "A value from a stack slot is loaded into `rdx` (occasionally zero-extended into `edx`) and then stored indirectly through a pointer, typically with `mov [rax+CONST], rdx`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.65
+    },
+    {
+      "feature": 2348,
+      "firing_rate": 0.15818698704242706,
+      "description": "A recurring pattern is a multiway conditional or jump-table dispatch whose short case arms update a memory field or global, then jump to a shared continuation.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.7,
+      "control_acc": 0.6499999999999999
+    },
+    {
+      "feature": 2394,
+      "firing_rate": 0.1100802943110466,
+      "description": "Functions repeatedly dereference register-held pointer arguments to access scalar count or index fields, compare those values with bounds, then increment, add to, or store them back through the pointers in branch-controlled loops.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.8,
+      "control_acc": 0.45
+    },
+    {
+      "feature": 2470,
+      "firing_rate": 0.10234587639570236,
+      "description": "The code materializes a global-object address with `lea r64, [CONST_VAR+CONST]` and uses that pointer in `cmp`-and-conditional-branch sentinel checks.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.4
+    },
+    {
+      "feature": 2514,
+      "firing_rate": 0.020313898101449013,
+      "description": "Repeatedly uses `movsxd` to load signed 32-bit structure fields and feeds those values into `lea` address calculations as 8-byte-scaled indices for array pointers.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.8
+    },
+    {
+      "feature": 3093,
+      "firing_rate": 0.07388480007648468,
+      "description": "A pointer is copied between `[rbp+var_xxx]` stack slots through `RAX`, then reloaded and dereferenced through an `RAX`-based memory operand.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.95,
+      "control_acc": 0.30000000000000004
+    },
+    {
+      "feature": 3141,
+      "firing_rate": 0.0881349965929985,
+      "description": "Unconditional `jmp JUMP_ADDR_n` instructions funnel early-exit paths to a shared return block, typically after loading the return value into `eax` or `rax`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 3184,
+      "firing_rate": 0.1213330328464508,
+      "description": "Repeated `lea` instructions materialize `GLOBAL_VAR` or `sub_xxx` addresses, then store those pointers in stack locals or structure fields.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.45
+    },
+    {
+      "feature": 3213,
+      "firing_rate": 0.20017100870609283,
+      "description": "Repeatedly null-check an object pointer, load a vtable-like entry and add its offset to form an adjusted pointer, pass the object in `RDI` and adjusted pointer in `RSI`, then call a function.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.75,
+      "control_acc": 0.6
+    },
+    {
+      "feature": 3419,
+      "firing_rate": 0.08904897421598434,
+      "description": "A repeated indirect-dispatch guard loads a pointer from a fixed-offset memory slot, compares it with a locally addressed routine using `lea`, and conditionally branches before an indirect call or jump.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.35
+    },
+    {
+      "feature": 3441,
+      "firing_rate": 0.29454660415649414,
+      "description": "Functions reload a saved stack-canary value into `rax`, subtract the thread-local `fs:xxx` canary, and conditionally branch based on the result.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 3679,
+      "firing_rate": 0.05503523349761963,
+      "description": "Multiple return blocks use direct `retn` instructions, with a result-producing instruction immediately before the return and a zero-result path spelled `xor eax, eax; retn`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 3733,
+      "firing_rate": 0.2616433799266815,
+      "description": "The feature centers on `lea reg, [base+offset]` address formation, often with a scaled index, to keep a stack or object-field pointer in a register for subsequent memory access or use as a pointer argument.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.5,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 4019,
+      "firing_rate": 0.13680186867713928,
+      "description": "NO CLEAR PATTERN",
+      "no_pattern": true,
+      "too_few_activations": false,
+      "detection_acc": null,
+      "control_acc": null
+    },
+    {
+      "feature": 4076,
+      "firing_rate": 0.22071093320846558,
+      "description": "NO CLEAR PATTERN",
+      "no_pattern": true,
+      "too_few_activations": false,
+      "detection_acc": null,
+      "control_acc": null
+    },
+    {
+      "feature": 4108,
+      "firing_rate": 0.4746788740158081,
+      "description": "Across sequences of calls, a recurring setup uses `mov` to load a memory-resident object field directly into a SysV argument register\u2014especially `rdi` from `[base+CONST]`\u2014immediately before `call`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.6
+    },
+    {
+      "feature": 4218,
+      "firing_rate": 0.06049944460391998,
+      "description": "A recurring pointer-chasing call sequence loads a pointer-sized value into `rax` from an object field or global slot, then sets up arguments in registers such as `rdi`, `rsi`, and `rdx` before a direct `call callfunc_xxx`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.9,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 4358,
+      "firing_rate": 0.1740882396697998,
+      "description": "The code places register-destination `mov` instructions, often loading from memory, between a flag-setting `cmp` or `test` and a conditional jump that uses the preserved flags.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.35
+    },
+    {
+      "feature": 4376,
+      "firing_rate": 0.06032254546880722,
+      "description": "`mov` instructions store a register value, often in `rdx` or `edx`, through a pointer held in `rax` into an indirect memory destination such as `[rax+CONST]`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.95,
+      "control_acc": 0.45
+    },
+    {
+      "feature": 4383,
+      "firing_rate": 0.05141863226890564,
+      "description": "A fixed-width bulk loop processes full chunks, then uses `sub` to compute the leftover element count and conditional branches to handle the trailing elements with scalar cleanup operations.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.6
+    },
+    {
+      "feature": 4743,
+      "firing_rate": 0.17419633269309998,
+      "description": "NO CLEAR PATTERN",
+      "no_pattern": true,
+      "too_few_activations": false,
+      "detection_acc": null,
+      "control_acc": null
+    },
+    {
+      "feature": 4838,
+      "firing_rate": 0.10132379084825516,
+      "description": "A `GLOBAL_VAR` address is loaded with `lea` into a callee-saved register and then passed to a call via an argument register, commonly `rsi`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.55
+    },
+    {
+      "feature": 4882,
+      "firing_rate": 0.01922302134335041,
+      "description": "A checked capacity-growth sequence conditionally initializes a candidate from a size-derived quantity, adds that quantity again to double it, branches on carry with `jb`, then compares against an immediate bound and uses `cmovbe` to cap the candidate before saving it.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.55
+    },
+    {
+      "feature": 4896,
+      "firing_rate": 0.03190077841281891,
+      "description": "The code repeatedly loads pointers from fixed-offset object fields or saved stack slots into `rdi`, tests a global word with `mov eax, [CONST_VAR]` and `test eax, eax`, then uses conditional branches to reach calls with constant `esi` and `edx` arguments.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.35
+    },
+    {
+      "feature": 5070,
+      "firing_rate": 0.2433834820985794,
+      "description": "The function ends with a `pop` of a general-purpose register other than `rbp` immediately followed by `retn`, commonly balancing an earlier `push`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 5102,
+      "firing_rate": 0.041757982224226,
+      "description": "The functions contain a bulk memory-fill idiom that masks a destination pointer to an alignment boundary, computes a repetition count with subtraction, addition, and a right shift, then uses `rep stos*` to fill the range.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.35
+    },
+    {
+      "feature": 5217,
+      "firing_rate": 0.125391885638237,
+      "description": "Object pointers are passed as the receiver in `RDI` to method-style calls, often with a prior call\u2019s `RAX` return reused as the next receiver and virtual-call targets loaded indirectly from the object\u2019s vtable.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.8,
+      "control_acc": 0.1
+    },
+    {
+      "feature": 5318,
+      "firing_rate": 0.025532416999340057,
+      "description": "Repeated guarded calls pass an object or stack pointer in `rdi` and immediate values in `esi` and `edx` to `call cs:xxx`, followed by a global-value test and conditional branch.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.8
+    },
+    {
+      "feature": 5332,
+      "firing_rate": 0.165154829621315,
+      "description": "An unconditional `jmp JUMP_ADDR_n` transfers control into a loop block that performs indexed or pointer-based work and uses a conditional branch to repeat or exit the iteration.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.9,
+      "control_acc": 0.25
+    },
+    {
+      "feature": 5381,
+      "firing_rate": 0.314831018447876,
+      "description": "A saved stack canary is reloaded into `rax` from an `rsp`-relative slot with a `CONST` displacement, compared using `sub rax fs:xxx`, then followed by a conditional branch before stack cleanup.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.9,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 5467,
+      "firing_rate": 0.06288757920265198,
+      "description": "At function entry, the incoming `rdi` argument is spilled to a stack slot, compared there with an immediate constant, and the comparison controls a conditional branch.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.55
+    },
+    {
+      "feature": 5551,
+      "firing_rate": 0.09845410287380219,
+      "description": "The recurring pattern is a counted traversal in which an integer index advances by an immediate, `cmp` checks it against a count or limit\u2014often a memory field\u2014and a conditional branch controls the loop.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.7,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 5595,
+      "firing_rate": 0.0402739979326725,
+      "description": "A recurring bulk-memory idiom computes a transfer count in ECX/RCX, sets up memory pointer registers, then uses a REP-prefixed string instruction to process a contiguous range.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.65
+    },
+    {
+      "feature": 5602,
+      "firing_rate": 0.18848584592342377,
+      "description": "Calls are set up with a destination buffer in `rdi`, an immediate size in `esi`, and a source or stream pointer in `rdx`, followed by a conditional check of the returned pointer in `rax`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.95,
+      "control_acc": 0.75
+    },
+    {
+      "feature": 5949,
+      "firing_rate": 0.0579049251973629,
+      "description": "The code performs array-oriented single-precision floating-point calculations with SSE scalar instructions such as `movss`, `mulss`, `addss`, `subss`, and `ucomiss`, often loading and storing adjacent float elements in loops.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.95,
+      "control_acc": 0.45
+    },
+    {
+      "feature": 6022,
+      "firing_rate": 0.04088331386446953,
+      "description": "Signed relational `cmov` instructions follow `cmp` or `test` and choose between integer values, often implementing branchless min/max-style bounds selection.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.4
+    },
+    {
+      "feature": 6467,
+      "firing_rate": 0.022102542221546173,
+      "description": "A scalar floating-point value in `xmm0` is copied to `xmm1` with `movapd`/`movaps`, then `movq`/`movd` loads another argument\u2019s bits from a general-purpose register into `xmm0` before a call.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.44999999999999996
+    },
+    {
+      "feature": 6472,
+      "firing_rate": 0.13937672972679138,
+      "description": "Many separate basic blocks perform a `test` or `cmp` and then conditionally branch to the distant `JUMP_ADDR_EXCEEDED` target, forming a repeated common-exit path.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.7,
+      "control_acc": 0.6
+    },
+    {
+      "feature": 6698,
+      "firing_rate": 0.025650348514318466,
+      "description": "The call setup marshals many arguments with a burst of `push` instructions, chiefly `push CONST` and also stack-local addresses formed by `lea rax, [rsp+var]` followed by `push rax`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 6802,
+      "firing_rate": 0.09421835094690323,
+      "description": "Repeated helper calls receive an RBP-derived object or member address in the SysV first-argument register RDI, commonly with an immediate loaded into ESI as the second argument.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.45
+    },
+    {
+      "feature": 7064,
+      "firing_rate": 0.17094336450099945,
+      "description": "Small stack-adjusting call wrappers derive condition flags from a helper\u2019s return and make the returned value depend on that condition, using instructions such as `test`, `cmp`, `ucomiss`, `jcc`, `setcc`, and `cmov`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.8,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 7290,
+      "firing_rate": 0.4409697949886322,
+      "description": "The code repeatedly performs byte-wise packed-field manipulation: it loads bytes from pointer-based memory with `movzx`, shifts and masks their bits, then merges the result into a wider value or writes it back.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 7435,
+      "firing_rate": 0.02222047559916973,
+      "description": "Runs of `push` instructions place register or stack-slot values on the stack as extra arguments immediately before a call, with the caller reclaiming the space using `add rsp, CONST`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.45
+    },
+    {
+      "feature": 7473,
+      "firing_rate": 0.1116822138428688,
+      "description": "A call\u2019s EAX/RAX return value is copied into another register, EAX is then overwritten, and the saved value is checked to steer a conditional branch.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 7524,
+      "firing_rate": 0.2541448473930359,
+      "description": "Function-call results are captured with `mov` from `rax` (including its `eax` form) into nonvolatile registers such as `rbx`, `rbp`, and `r12`\u2013`r15`, often to preserve the value across later calls.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.5,
+      "control_acc": 0.44999999999999996
+    },
+    {
+      "feature": 7930,
+      "firing_rate": 0.05250950902700424,
+      "description": "A 32-bit value loaded from memory is checked against a fixed immediate limit with an unsigned conditional branch, typically `cmp regd, CONST` followed by `ja` or `jbe`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.45
+    },
+    {
+      "feature": 8004,
+      "firing_rate": 0.058799248188734055,
+      "description": "A `call cs:xxx` return value is saved as an object pointer, then that object is initialized through its base register with `movdqa`/`movups` vector transfers and scalar stores to fixed-offset fields.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.25
+    },
+    {
+      "feature": 8005,
+      "firing_rate": 0.11758866906166077,
+      "description": "The code repeatedly loads pointer fields from structures with operands like `[base+CONST]`, then uses the loaded pointers for scaled indexed accesses such as `[ptr+index*4]` or `[ptr+index*8]` inside loops.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.9,
+      "control_acc": 0.35
+    },
+    {
+      "feature": 8012,
+      "firing_rate": 0.24494609236717224,
+      "description": "NO CLEAR PATTERN",
+      "no_pattern": true,
+      "too_few_activations": false,
+      "detection_acc": null,
+      "control_acc": null
+    },
+    {
+      "feature": 8162,
+      "firing_rate": 0.2070307582616806,
+      "description": "A fixed immediate is loaded into `edi` before a `call cs:xxx`, and the pointer returned in `rax` is then used or passed to another call.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.9,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 8218,
+      "firing_rate": 0.03978260979056358,
+      "description": "A register-indirect tail transfer loads a function pointer from a constant-offset slot addressed by `rax` (`mov rax, [rax+CONST]`) and immediately jumps through it with `jmp rax`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.3
+    },
+    {
+      "feature": 8288,
+      "firing_rate": 0.03264768421649933,
+      "description": "A value returned in RAX is forwarded into RDI as the first argument of a subsequent call, often with RSI loaded from a GLOBAL_VAR address.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.95
+    },
+    {
+      "feature": 8476,
+      "firing_rate": 0.014112605713307858,
+      "description": "Repeated unrolled structure copies, loading successive qwords from a source base with `mov reg, [src+CONST]` and storing them at corresponding offsets from a destination base with `mov [dst+CONST], reg`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.45
+    },
+    {
+      "feature": 8532,
+      "firing_rate": 0.14604975283145905,
+      "description": "Repeated calls pass a stack-derived pointer through `rax` into `rdi` and a second stack-derived value through `rdx` into `rsi` immediately before the call.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.35
+    },
+    {
+      "feature": 8587,
+      "firing_rate": 0.0265053603798151,
+      "description": "Repeated `mov` instructions access two fields of the same object through one base pointer, pairing a fixed-displacement operand such as `[rax+CONST]` with a zero-displacement operand such as `[rax]`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.6,
+      "control_acc": 0.8
+    },
+    {
+      "feature": 8754,
+      "firing_rate": 0.03669670596718788,
+      "description": "The code initializes a call-returned object by storing constant SIMD vectors with `movups` to `[rax]` and `[rax+CONST]`, interleaved with scalar immediate or register stores to fixed offsets from `rax`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 8939,
+      "firing_rate": 0.11955421417951584,
+      "description": "A nested array-processing loop advances an element pointer by a fixed immediate, compares it with an end pointer and branches back with `jnz`, while an outer pointer or counter advances and is checked against its bound.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.35
+    },
+    {
+      "feature": 9066,
+      "firing_rate": 0.16890902817249298,
+      "description": "A stack-canary check is followed by `endbr64` cleanup blocks that call routines on saved object or stack pointers and converge on a shared `add rsp`/register-pop return tail.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.35
+    },
+    {
+      "feature": 9110,
+      "firing_rate": 0.3891187608242035,
+      "description": "Repeated bounds checks compare an index, length, or size value with `cmp` and branch on unsigned conditions such as `ja`, `jbe`, `jb`, or `jnb`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.30000000000000004
+    },
+    {
+      "feature": 9179,
+      "firing_rate": 0.14143072068691254,
+      "description": "A recurring method-call sequence loads a pointer from an object, passes the object in `RDI` and an immediate constant in `ESI`, then calls a routine.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.8,
+      "control_acc": 0.6
+    },
+    {
+      "feature": 9183,
+      "firing_rate": 0.04469647258520126,
+      "description": "Repeated call chains load `GLOBAL_VAR` into `rsi` with `lea` and pass the preceding call\u2019s return value in `rax` as the next call\u2019s first argument in `rdi`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.4
+    },
+    {
+      "feature": 9203,
+      "firing_rate": 0.06463691592216492,
+      "description": "Conditional guard branches after `test` or `cmp`\u2014such as `jz`, `jnz`, `jle`, and unsigned range checks\u2014often target the shared `JUMP_ADDR_EXCEEDED` exit.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.8,
+      "control_acc": 0.8
+    },
+    {
+      "feature": 9247,
+      "firing_rate": 0.20269672572612762,
+      "description": "Forward conditional jumps follow `test`/`cmp` guard checks and divert to later handling blocks while the fallthrough continues through further checks.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.6,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 9270,
+      "firing_rate": 0.3887453079223633,
+      "description": "Functions load a stack-canary value from `fs:xxx`, save it in a stack slot, then reload and compare it with `fs:xxx` before returning, branching to a failure path if it changed.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.45
+    },
+    {
+      "feature": 9393,
+      "firing_rate": 0.10189380496740341,
+      "description": "The function exits by restoring saved registers with consecutive `pop` instructions, then issuing an unconditional `jmp UNK_JUMP_ADDR` as a tail-call-style exit.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.55
+    },
+    {
+      "feature": 9525,
+      "firing_rate": 0.07478895038366318,
+      "description": "A loop-carried pointer or cursor is compared with a saved register holding a boundary or sentinel, and a `jnz` backedge repeats the traversal until they match.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.8
+    },
+    {
+      "feature": 9661,
+      "firing_rate": 0.06559020280838013,
+      "description": "The epilogue resets the stack with `lea rsp, [rbp+CONST]`, pops the saved `rbx`, `r12`, and `r13` registers, then pops `rbp` and returns.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.35
+    },
+    {
+      "feature": 9790,
+      "firing_rate": 0.10610989481210709,
+      "description": "Repeatedly computes a stack-local address with `lea rax, [rbp+var]` and passes it in `rdi` as the first argument to a call, often with another stack address or a global address supplied as an additional argument.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.4
+    },
+    {
+      "feature": 9861,
+      "firing_rate": 0.24369797110557556,
+      "description": "NO CLEAR PATTERN",
+      "no_pattern": true,
+      "too_few_activations": false,
+      "detection_acc": null,
+      "control_acc": null
+    },
+    {
+      "feature": 10007,
+      "firing_rate": 0.08984501659870148,
+      "description": "Across many functions, a helper-call path stages a 32-bit value in a register such as `r13d` and writes it back to a field through a pointer, with an immediate-valued branch path also setting that register.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.6,
+      "control_acc": 0.3
+    },
+    {
+      "feature": 10101,
+      "firing_rate": 0.07541792094707489,
+      "description": "A vectorized array-processing loop is followed by an unrolled scalar remainder that sign-extends 32-bit indices with `movsxd` or `cdqe`, accesses and updates individual elements, and checks each index against the array bound.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.9,
+      "control_acc": 0.45
+    },
+    {
+      "feature": 10122,
+      "firing_rate": 0.056135937571525574,
+      "description": "Repeatedly computes indexed table or record addresses by sign-extending an integer index, scaling it with `add` and `shl`, adding a base pointer such as `cs:xxx`, and then accessing memory through the resulting address.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 10252,
+      "firing_rate": 0.3479209542274475,
+      "description": "NO CLEAR PATTERN",
+      "no_pattern": true,
+      "too_few_activations": false,
+      "detection_acc": null,
+      "control_acc": null
+    },
+    {
+      "feature": 10271,
+      "firing_rate": 0.027782965451478958,
+      "description": "The feature is byte-order reversal of scalar values, typically using an immediate `rol` on a 16-bit register and sometimes `bswap` on a 32-bit register.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.6
+    },
+    {
+      "feature": 10285,
+      "firing_rate": 0.025355517864227295,
+      "description": "The prologue allocates a large stack frame in chunks, repeatedly subtracting a constant from `rsp` and using `or` with an immediate on an `rsp`-relative memory slot to probe the stack.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.25
+    },
+    {
+      "feature": 10383,
+      "firing_rate": 0.027350544929504395,
+      "description": "The functions contain a dynamic-buffer growth path that computes the current element count from a pointer difference shifted by the element size, checks and clamps the proposed capacity with arithmetic flags and conditional moves, then allocates and copies the existing elements into the new buffer.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.1
+    },
+    {
+      "feature": 10496,
+      "firing_rate": 0.10077343881130219,
+      "description": "A loop loads each pointer-array element, passes it with a context or key in `rdi`/`rsi` to a hidden routine, then tests `eax` and conditionally branches to continue or exit the scan.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.6
+    },
+    {
+      "feature": 10750,
+      "firing_rate": 0.07834658771753311,
+      "description": "Repeated call-site setup loads several `GLOBAL_VAR` addresses with `lea` into SysV argument registers, often dereferences a `cs:xxx` global pointer into `rdi`, sets `eax` to an immediate, and calls `cs:xxx`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.6
+    },
+    {
+      "feature": 11020,
+      "firing_rate": 0.12128389626741409,
+      "description": "In a call-heavy sequence, the code loads a register into the SysV first-argument register with `mov rdi, reg`, then tests the preceding call\u2019s result with `test eax, eax` and branches with `jz` or `jnz` before continuing with calls.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 11210,
+      "firing_rate": 0.11911197006702423,
+      "description": "The code loads an object pointer into `RAX`, fetches a field with `mov reg,[rax+CONST]`, and uses that field in the ensuing call sequence.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 11387,
+      "firing_rate": 0.12326909601688385,
+      "description": "NO CLEAR PATTERN",
+      "no_pattern": true,
+      "too_few_activations": false,
+      "detection_acc": null,
+      "control_acc": null
+    },
+    {
+      "feature": 11474,
+      "firing_rate": 0.06650418043136597,
+      "description": "Repeatedly load two pointer-like endpoints from fixed-offset memory operands, subtract them, arithmetic-shift the byte difference into an element count, and compare an index against that count to control a bounds-checking branch.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 1.0
+    },
+    {
+      "feature": 11808,
+      "firing_rate": 0.05491729825735092,
+      "description": "A sign-extended segment-relative value indexes an eight-byte entry through a pointer loaded from a global, and the dereferenced entry is reused as a scaled index into another global table.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.65
+    },
+    {
+      "feature": 11833,
+      "firing_rate": 0.05720715969800949,
+      "description": "The functions contain indirect calls through register-held function pointers, using instructions such as `call rdx`, `call rbx`, or `call rax`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 11856,
+      "firing_rate": 0.09562371671199799,
+      "description": "The feature marks integer self-adds (`add reg, reg`), which double a value and often appear alongside shifts, masks, and ORs in bit-manipulation sequences.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.7
+    },
+    {
+      "feature": 11920,
+      "firing_rate": 0.1484968513250351,
+      "description": "Repeatedly computes flattened array offsets by multiplying an index with `imul`, adding another index in `eax`, and using the result in base-plus-offset pointer arithmetic for memory accesses.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.8,
+      "control_acc": 0.3
+    },
+    {
+      "feature": 12078,
+      "firing_rate": 0.16758228838443756,
+      "description": "The functions use a frameless callee-save scheme, pushing `r12`, `rbp`, and `rbx` and restoring them in reverse order with `pop rbx; pop rbp; pop r12` on return paths.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.9,
+      "control_acc": 0.6
+    },
+    {
+      "feature": 12249,
+      "firing_rate": 0.0838894173502922,
+      "description": "NO CLEAR PATTERN",
+      "no_pattern": true,
+      "too_few_activations": false,
+      "detection_acc": null,
+      "control_acc": null
+    },
+    {
+      "feature": 12256,
+      "firing_rate": 0.15340088307857513,
+      "description": "A scalar index, count, or size value is repeatedly placed in SysV integer argument registers such as ESI/RSI, EDX/RDX, and ECX/RCX immediately before helper calls.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.7,
+      "control_acc": 0.44999999999999996
+    },
+    {
+      "feature": 12685,
+      "firing_rate": 0.015124861150979996,
+      "description": "A pointer-dependent field lookup loads an offset with `mov rax [pointer+CONST]`, uses it in `mov reg [base+rax+CONST]`, then null-tests the resulting pointer with `test reg reg` and branches with `jz`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.55
+    },
+    {
+      "feature": 12714,
+      "firing_rate": 0.09671459347009659,
+      "description": "Repeated numeric computation is performed directly in SIMD registers, using instructions such as `addps`, `addss`, `divss`, `divsd`, `andps`, `xorps`, `mulps`, and `vfmadd`, often in unrolled load-operate-store sequences.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.44999999999999996
+    },
+    {
+      "feature": 12720,
+      "firing_rate": 0.20480968058109283,
+      "description": "Computed values are spilled to local stack slots, then reloaded and pushed as stack arguments before a `call cs:xxx`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.5,
+      "control_acc": 0.65
+    },
+    {
+      "feature": 13155,
+      "firing_rate": 0.15811818838119507,
+      "description": "A helper-call error path loads an immediate status value into a callee-saved 32-bit register, commonly `ebx` or `ebp`, and carries it through a shared return or cleanup path.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.9,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 13176,
+      "firing_rate": 0.07707881182432175,
+      "description": "Repeated calls form a pointer-return chain, passing each call\u2019s `rax` result as the next call\u2019s first argument in `rdi`, often with a `GLOBAL_VAR` address in `rsi`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.39999999999999997
+    },
+    {
+      "feature": 13395,
+      "firing_rate": 0.043497487902641296,
+      "description": "Register-to-register `sub` instructions compute distances between pointer-like buffer bounds and base addresses, with the resulting offsets used in size comparisons and element-size shifts.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.65
+    },
+    {
+      "feature": 13419,
+      "firing_rate": 0.049187738448381424,
+      "description": "Repeatedly load a pointer from `[register+CONST]` into the System V first-argument register `rdi`, test it with `test rdi,rdi`, branch with `jz`, and call a helper with `rdi` when non-null.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.95,
+      "control_acc": 0.45
+    },
+    {
+      "feature": 13483,
+      "firing_rate": 0.06791937351226807,
+      "description": "The code repeatedly reloads an object pointer from a stack slot, dereferences it to obtain a dispatch table, loads a function pointer from a constant-offset slot, and invokes it with an indirect `call reg`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.55
+    },
+    {
+      "feature": 13486,
+      "firing_rate": 0.024490678682923317,
+      "description": "A conditional `jz` leads into a choice where `lea reg, GLOBAL_VAR` is followed by an unconditional jump over `lea reg, unk_xxx` to a shared join point.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.55,
+      "control_acc": 0.6
+    },
+    {
+      "feature": 13514,
+      "firing_rate": 0.05740371346473694,
+      "description": "An out-of-line block loads immediate values into `edx` and `esi`, calls a helper, then unconditionally jumps to an in-function target.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.9,
+      "control_acc": 0.8
+    },
+    {
+      "feature": 13604,
+      "firing_rate": 0.2464005947113037,
+      "description": "A pointer is threaded through successive helper calls by passing it in `rdi` (sometimes alongside pointer arguments in `rsi` or `rdx`) and saving returned pointers from `rax` in callee-saved registers.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.8500000000000001,
+      "control_acc": 0.6000000000000001
+    },
+    {
+      "feature": 13675,
+      "firing_rate": 0.0518510527908802,
+      "description": "A `lea rax, <symbol>` loads a symbol address that is passed in `rdi` as the first argument to an immediately following `call`, often after the second argument has been set in `rsi`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 13792,
+      "firing_rate": 0.07320668548345566,
+      "description": "A zero-extended value loaded from memory is reduced by an immediate with `sub eax, CONST`, then passed in an integer argument register to a helper call, often alongside a pointer formed by adding a constant to a saved pointer.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.6499999999999999,
+      "control_acc": 0.55
+    },
+    {
+      "feature": 13849,
+      "firing_rate": 0.06280896067619324,
+      "description": "A call\u2019s return value in RAX is copied to RDX and forwarded as an argument to a subsequent call, commonly through RSI while RDI holds a stack-object address.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.95,
+      "control_acc": 0.8
+    },
+    {
+      "feature": 13903,
+      "firing_rate": 0.20931078493595123,
+      "description": "Near the epilogue, a saved stack canary is checked with `sub rax, fs:xxx`, followed by `jnz JUMP_ADDR_n` to the failure path.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.55
+    },
+    {
+      "feature": 13934,
+      "firing_rate": 0.08482304960489273,
+      "description": "The code conditionally updates scalar global or structure-field state: it computes a register-held value, uses a comparison and conditional jump to govern the update, then commits the value with `mov [mem], reg`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.6
+    },
+    {
+      "feature": 14109,
+      "firing_rate": 0.05271589010953903,
+      "description": "The code contains endpoint-controlled loops that repeatedly pass a current element pointer in an argument register to a function call, advance the pointer by a fixed immediate stride, compare it with an end pointer, and branch back.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 14180,
+      "firing_rate": 0.022230302914977074,
+      "description": "During stack-frame setup, an immediate `sub rsp, ...` is followed by an immediate memory `or` that touches a stack slot addressed relative to `rsp` (`or [rsp+...], imm`), as a stack probe.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 14280,
+      "firing_rate": 0.06576710194349289,
+      "description": "A condition produced by a `setcc` instruction into a byte register is zero-extended with `movzx` into a 32-bit register, often for subsequent arithmetic or comparison.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.6
+    },
+    {
+      "feature": 14529,
+      "firing_rate": 0.0950242280960083,
+      "description": "A function pointer is loaded from a `CONST`-offset slot reached by dereferencing an object pointer, then invoked indirectly with `call` through the register holding it.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.4
+    },
+    {
+      "feature": 14567,
+      "firing_rate": 0.07012078166007996,
+      "description": "Call sites load `GLOBAL_VAR` addresses into `rcx`, `rsi`, and `rdi`, place an immediate in `edx`, then call `cs:xxx`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.65
+    },
+    {
+      "feature": 14616,
+      "firing_rate": 0.09467042982578278,
+      "description": "A recurring scalar-difference idiom stages two values in 32-bit registers with `mov` instructions and computes their difference with `sub`, commonly as `mov ecx, eax; mov eax, edx; sub eax, ecx`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 14693,
+      "firing_rate": 0.005444556940346956,
+      "description": "A pointer loaded from a global is used to test a byte at `[rax+CONST]` against an immediate, with the nonzero result materialized by `setnz al` and `movzx eax, al`, stored to a stack slot, and `setnz` repeated before a subsequent global-pointer reload is checked with `test rax, rax`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 1.0
+    },
+    {
+      "feature": 14722,
+      "firing_rate": 0.041699014604091644,
+      "description": "An entry-time guard tests `rdi` for zero with `test rdi,rdi; jz`, often followed by a comparison of a global slot, and routes into a `cs:xxx` call prepared with global addresses in `rdi`, `rsi`, and `rcx` and a constant in `edx`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.9,
+      "control_acc": 0.39999999999999997
+    },
+    {
+      "feature": 14947,
+      "firing_rate": 0.4361247420310974,
+      "description": "The code repeatedly follows pointers through fixed-offset fields using loads such as `mov reg, [reg+CONST]` and `movsxd reg, [reg+CONST]`, then uses the resulting values in comparisons or call arguments.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.7,
+      "control_acc": 0.9
+    },
+    {
+      "feature": 14970,
+      "firing_rate": 0.09752046316862106,
+      "description": "The incoming second integer argument is copied from `esi` into a callee-saved 32-bit register and preserved across calls for later use.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.6
+    },
+    {
+      "feature": 15093,
+      "firing_rate": 0.10587403178215027,
+      "description": "A dense, segmented switch dispatch repeatedly subtracts a case-range base from an integer selector, bounds-checks the rebased value, then loads a signed scaled table offset and jumps indirectly through the table.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.6,
+      "control_acc": 0.4
+    },
+    {
+      "feature": 15150,
+      "firing_rate": 0.055762484669685364,
+      "description": "A stack-canary check loads the saved value, subtracts `fs:xxx`, and uses `jz` to skip a failure-handler call and reach the epilogue.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 15249,
+      "firing_rate": 0.02188633196055889,
+      "description": "A tail-jump sequence copies `rdx` into `rax` with `mov rax, rdx` immediately before jumping to an unresolved target.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.9
+    },
+    {
+      "feature": 15277,
+      "firing_rate": 0.02671174332499504,
+      "description": "A recurring call-site idiom loads a pointer from `cs:xxx` into `rax`, dereferences it into `rdi`, and calls a helper, often with `lea rsi, GLOBAL_VAR` setting up another argument.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.9,
+      "control_acc": 0.85
+    },
+    {
+      "feature": 15332,
+      "firing_rate": 0.07969298213720322,
+      "description": "A cleanup landing-pad block starts with `endbr64; mov rbp, rax` and passes the saved value as the first argument with `mov rdi, rbp` to a call before returning.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.9
+    },
+    {
+      "feature": 15382,
+      "firing_rate": 0.06245516240596771,
+      "description": "A batch of accumulator or local values is zero-initialized by clearing an XMM register with PXOR/VXORPS and propagating zero through MOVAPS/VMOVAPS copies and repeated stores to stack slots.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.7,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 15399,
+      "firing_rate": 0.03706033155322075,
+      "description": "At function entry, a `mov` initializes an `[rsp+...var...]` stack local before a `test` and conditional jump on an argument register.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 15419,
+      "firing_rate": 0.042200230062007904,
+      "description": "Scalar SSE `comiss`, `ucomiss`, `comisd`, and `ucomisd` instructions compare XMM values against XMM-register or memory operands, feeding nearby conditional branches and `setcc` instructions.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 15423,
+      "firing_rate": 0.09206607937812805,
+      "description": "A saved incoming pointer is reloaded from a stack slot into `rax`, passed in `rdi` to a helper call, and the call\u2019s return value is typically stored back to a stack slot.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 15488,
+      "firing_rate": 0.025021376088261604,
+      "description": "Scalar call results are moved or converted from `xmm0` into the integer return register `rax`/`eax`, typically with `movq` and sometimes `movd` or `cvttsd2si`.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.9
+    },
+    {
+      "feature": 15664,
+      "firing_rate": 0.1015203446149826,
+      "description": "The feature is XMM-register floating-point arithmetic, including scalar or packed multiply, add/subtract, divide, and fused multiply-add instructions.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.8,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 16185,
+      "firing_rate": 0.14460507035255432,
+      "description": "Repeated branch-arm stubs load an immediate into `edx`, set up `rdi` (often with `esi` too), call a helper, then unconditionally jump to a continuation label.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.75,
+      "control_acc": 0.5
+    },
+    {
+      "feature": 16213,
+      "firing_rate": 0.15516987442970276,
+      "description": "A loop walks a contiguous range by advancing a pointer by a fixed stride, comparing it with an end pointer, and conditionally jumping back until the pointers match.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 1.0,
+      "control_acc": 0.55
+    },
+    {
+      "feature": 16231,
+      "firing_rate": 0.28935757279396057,
+      "description": "NO CLEAR PATTERN",
+      "no_pattern": true,
+      "too_few_activations": false,
+      "detection_acc": null,
+      "control_acc": null
+    },
+    {
+      "feature": 16247,
+      "firing_rate": 0.12762276828289032,
+      "description": "Repeated `mov [base+offset], CONST` instructions initialize several fields of the same structure with fixed immediate values.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.5,
+      "control_acc": 0.55
+    },
+    {
+      "feature": 16251,
+      "firing_rate": 0.19343900680541992,
+      "description": "Repeated `mov [base+offset], CONST` instructions initialize several fields of the same memory block in a short sequence.",
+      "no_pattern": false,
+      "too_few_activations": false,
+      "detection_acc": 0.95,
+      "control_acc": 0.35
+    }
+  ]
+}

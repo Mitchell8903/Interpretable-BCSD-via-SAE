@@ -64,11 +64,7 @@ def auxk_loss(sae, x, x_hat, pre, dead, k_aux):
 
 
 def load_run(run_dir, device="cuda"):
-    """A trained SAE from a run directory, with its metadata and input scale.
-
-    Runs trained before the sqrt(d_model) normalization was dropped saved
-    their scale; later runs train on raw states, so their scale is 1.
-    """
+    """A trained SAE from a run directory, with its metadata and input scale."""
     run = json.loads((Path(run_dir) / "run.json").read_text())
     checkpoint = torch.load(Path(run_dir) / "sae.pt", map_location=device)
     sae = (

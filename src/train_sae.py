@@ -47,6 +47,14 @@ def evaluate(sae, x, batch_size):
     }
 
 
+def lr_multiplier(step, total_steps, decay_frac):
+    """1, then linear decay to 0 over the last decay_frac of total_steps."""
+    decay_steps = decay_frac * total_steps
+    if decay_steps == 0:
+        return 1.0
+    return min(1.0, (total_steps - step) / decay_steps)
+
+
 def train(cfg, device="cuda"):
     """Train one SAE (sae, epoch log, d_model, n_train)."""
     set_seed(cfg.seed)
@@ -58,6 +66,10 @@ def train(cfg, device="cuda"):
     d_model = x_train.shape[1]
     sae = SAE(d_model, cfg.d_sae, cfg.k).to(device)
     optimizer = torch.optim.Adam(sae.parameters(), lr=cfg.lr)
+    total_steps = cfg.epochs * -(-len(x_train) // cfg.batch_size)
+    scheduler = torch.optim.lr_scheduler.LambdaLR(
+        optimizer, lambda step: lr_multiplier(step, total_steps, cfg.lr_decay_frac)
+    )
 
     tokens_since_fired = torch.zeros(cfg.d_sae, device=device)
 
@@ -76,6 +88,7 @@ def train(cfg, device="cuda"):
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
+            scheduler.step()
             sae.normalize_decoder()
 
             tokens_since_fired += len(batch)
@@ -83,6 +96,7 @@ def train(cfg, device="cuda"):
 
         metrics = evaluate(sae, x_heldout, cfg.batch_size)
         metrics["epoch"] = epoch
+        metrics["lr"] = scheduler.get_last_lr()[0]
         log.append(metrics)
         print(
             f"epoch {epoch:3d}  recon {metrics['recon']:.4f}  "

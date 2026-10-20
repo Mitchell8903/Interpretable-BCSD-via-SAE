@@ -37,8 +37,11 @@ class SAEConfig:
 
     # Training parameters
     lr: float = 1e-4
+    # Fraction of training steps, at the end, over which lr decays linearly
+    # to 0. 0 keeps lr constant.
+    lr_decay_frac: float = 0.2
     batch_size: int = 4096
-    epochs: int = 60
+    epochs: int = 100
 
     seed: int = 0
 

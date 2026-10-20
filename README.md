@@ -43,7 +43,14 @@ Train the sparse autoencoder with the specified hyperparameters:
 ```bash
 python src/train_sae.py --layer 6 --d_sae 16384 --k 32
 ```
-*Use `--sweep` to train 3 seeds x `k` {16, 32, 64} x `d_sae` {4096, 8192, 16384} (default x3 seeds at 60 epochs each)*
+*Use `--sweep` to train 3 seeds x `k` {16, 32, 64} x `d_sae` {4096, 8192, 16384} (default x3 seeds at 100 epochs each, lr decayed linearly to 0 over the last 20%)*
+
+Plot per-epoch held-out curves, mean ± sd over seeds, one panel per (`d_sae`, `k`), from run.json files or a sweep directory:
+
+```bash
+python src/plot_curves.py results/layer6/sweep --out results/layer6/curves_recon.png
+```
+*`--metric` picks `recon` (default), `dead_frac` or `l0`; `--full_y` shares one y-axis over every epoch.*
 
 Evaluate the reconstruction fidelity metrics on a specified SAE configuration:
 

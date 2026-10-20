@@ -3,6 +3,7 @@ data/
 models/ 
 experiments/
 notes/
+logs/
 downloads/
 __pycache__/
 *.pyc

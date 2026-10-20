@@ -1,0 +1,132 @@
+{
+  "run_dir": "results/layer3/sweep/dsae4096_k32_seed0",
+  "config": {
+    "layer": 3,
+    "activations_dir": "data/activations",
+    "heldout_frac": 0.2,
+    "split_seed": 0,
+    "d_sae": 4096,
+    "k": 32,
+    "k_aux": 512,
+    "aux_coef": 0.03125,
+    "dead_tokens": 2000000,
+    "lr": 0.0001,
+    "lr_decay_frac": 0.2,
+    "batch_size": 4096,
+    "epochs": 100,
+    "seed": 0,
+    "out_dir": ""
+  },
+  "jtrans_commit": "1d405156865e3c582e4f183cbaa623b700ea0e9e",
+  "poolsize": 5000,
+  "seed": 0,
+  "mean_functions": 4096,
+  "n_heldout": 364896,
+  "n_heldout_functions": 48249,
+  "mse": 17.306045532226562,
+  "heldout_variance": 233.8634796142578,
+  "variance_explained": 0.9259993669778124,
+  "pairs": {
+    "O0-O3": {
+      "original": {
+        "mrr": 0.5795475974117502,
+        "recall_at_1": 0.4676
+      },
+      "reconstructed": {
+        "mrr": 0.5783326516859338,
+        "recall_at_1": 0.4668
+      },
+      "ablated": {
+        "mrr": 0.006856076894397763,
+        "recall_at_1": 0.0014
+      },
+      "retained_recall_at_1": 0.9982891360136869,
+      "recovered_fraction": 0.9982839982839983
+    },
+    "O0-Os": {
+      "original": {
+        "mrr": 0.5865279034063607,
+        "recall_at_1": 0.4716
+      },
+      "reconstructed": {
+        "mrr": 0.5853721523461051,
+        "recall_at_1": 0.4696
+      },
+      "ablated": {
+        "mrr": 0.0070348389075218275,
+        "recall_at_1": 0.0018
+      },
+      "retained_recall_at_1": 0.9957591178965225,
+      "recovered_fraction": 0.9957428693060877
+    },
+    "O1-Os": {
+      "original": {
+        "mrr": 0.6546030891613087,
+        "recall_at_1": 0.5508
+      },
+      "reconstructed": {
+        "mrr": 0.6563135806980479,
+        "recall_at_1": 0.5542
+      },
+      "ablated": {
+        "mrr": 0.0313301034031339,
+        "recall_at_1": 0.0062
+      },
+      "retained_recall_at_1": 1.0061728395061729,
+      "recovered_fraction": 1.006243114212266
+    },
+    "O1-O3": {
+      "original": {
+        "mrr": 0.6906467945232642,
+        "recall_at_1": 0.6016
+      },
+      "reconstructed": {
+        "mrr": 0.6927142395779451,
+        "recall_at_1": 0.6042
+      },
+      "ablated": {
+        "mrr": 0.03849525390458273,
+        "recall_at_1": 0.0092
+      },
+      "retained_recall_at_1": 1.0043218085106382,
+      "recovered_fraction": 1.0043889264010804
+    },
+    "O2-Os": {
+      "original": {
+        "mrr": 0.7031461077624215,
+        "recall_at_1": 0.6148
+      },
+      "reconstructed": {
+        "mrr": 0.7036786127647472,
+        "recall_at_1": 0.6152
+      },
+      "ablated": {
+        "mrr": 0.04053631981555548,
+        "recall_at_1": 0.0094
+      },
+      "retained_recall_at_1": 1.0006506180871828,
+      "recovered_fraction": 1.0006607201850015
+    },
+    "O2-O3": {
+      "original": {
+        "mrr": 0.7479989914602736,
+        "recall_at_1": 0.6704
+      },
+      "reconstructed": {
+        "mrr": 0.7483703233112863,
+        "recall_at_1": 0.6698
+      },
+      "ablated": {
+        "mrr": 0.13024383469636963,
+        "recall_at_1": 0.041
+      },
+      "retained_recall_at_1": 0.9991050119331741,
+      "recovered_fraction": 0.9990467111534794
+    }
+  },
+  "mean_retained_recall_at_1": 1.0007164219912295,
+  "mean_recovered_fraction": 1.0007277232569853,
+  "mean_recall_at_1_unedited": 0.5577,
+  "mean_recall_at_1_original": 0.5628000000000001,
+  "mean_recall_at_1_ablated": 0.011500000000000002
+}
